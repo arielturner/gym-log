@@ -3,16 +3,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>GymLog</Name>
+    <Name>GymLog.DB</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{f942f2de-7c48-42c2-b1c8-77ce11b682a8}</ProjectGuid>
+    <ProjectGuid>{6be9133a-3705-4653-a1de-2d79382e3154}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>GymLog</RootNamespace>
-    <AssemblyName>GymLog</AssemblyName>
+    <RootNamespace>GymLog.DB</RootNamespace>
+    <AssemblyName>GymLog.DB</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>

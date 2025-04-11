@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymLog.API", "GymLog.API\GymLog.API.csproj", "{7D33A15B-9EE1-447C-9EA8-64796B7D6D1D}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "GymLog.DB", "GymLog.DB\GymLog.DB.sqlproj", "{6BE9133A-3705-4653-A1DE-2D79382E3154}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D33A15B-9EE1-447C-9EA8-64796B7D6D1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D33A15B-9EE1-447C-9EA8-64796B7D6D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D33A15B-9EE1-447C-9EA8-64796B7D6D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D33A15B-9EE1-447C-9EA8-64796B7D6D1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BE9133A-3705-4653-A1DE-2D79382E3154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BE9133A-3705-4653-A1DE-2D79382E3154}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BE9133A-3705-4653-A1DE-2D79382E3154}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6BE9133A-3705-4653-A1DE-2D79382E3154}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BE9133A-3705-4653-A1DE-2D79382E3154}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BE9133A-3705-4653-A1DE-2D79382E3154}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0E6E3174-3CDB-4A51-92B1-3E96922DE983}
+	EndGlobalSection
+EndGlobal
