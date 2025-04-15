@@ -4,8 +4,8 @@
     [WorkoutProgramId]    INT          NOT NULL,
     [Week]                INT          NOT NULL,
     [Day]                 INT          NOT NULL,
-    PRIMARY KEY CLUSTERED ([WorkoutTemplateId] ASC),
+    CONSTRAINT [PK_WorkoutTemplate] PRIMARY KEY CLUSTERED ([WorkoutTemplateId] ASC),
     CONSTRAINT [FK_WorkoutTemplate_WorkoutProgram] FOREIGN KEY ([WorkoutProgramId]) REFERENCES [dbo].[WorkoutProgram] ([WorkoutProgramId]),
-    UNIQUE NONCLUSTERED ([WorkoutTemplateName] ASC)
+    CONSTRAINT [UQ_WorkoutTemplate_WorkoutTemplateName] UNIQUE NONCLUSTERED ([WorkoutTemplateName] ASC)
 );
 

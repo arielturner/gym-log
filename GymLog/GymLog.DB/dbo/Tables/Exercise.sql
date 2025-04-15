@@ -4,9 +4,9 @@
     [ExerciseCategoryId] INT          NOT NULL,
     [BodyPartId]         INT          NOT NULL,
     [EstimatedOneRepMax] INT          NULL,
-    PRIMARY KEY CLUSTERED ([ExerciseId] ASC),
+    CONSTRAINT [PK_Exercise] PRIMARY KEY CLUSTERED ([ExerciseId] ASC),
     CONSTRAINT [FK_Exercise_BodyPart] FOREIGN KEY ([BodyPartId]) REFERENCES [dbo].[BodyPart] ([BodyPartId]),
     CONSTRAINT [FK_Exercise_ExerciseCategory] FOREIGN KEY ([ExerciseCategoryId]) REFERENCES [dbo].[ExerciseCategory] ([ExerciseCategoryId]),
-    UNIQUE NONCLUSTERED ([ExerciseName] ASC)
+    CONSTRAINT [UQ_Exercise_ExerciseName] UNIQUE NONCLUSTERED ([ExerciseName] ASC)
 );
 

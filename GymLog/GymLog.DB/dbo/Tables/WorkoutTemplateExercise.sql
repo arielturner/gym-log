@@ -3,7 +3,7 @@
     [WorkoutTemplateId]         INT NOT NULL,
     [ExerciseId]                INT NOT NULL,
     [Sequence]                  INT NOT NULL,
-    PRIMARY KEY CLUSTERED ([WorkoutTemplateExerciseId] ASC),
+    CONSTRAINT [PK_WorkoutTemplateExercise] PRIMARY KEY CLUSTERED ([WorkoutTemplateExerciseId] ASC),
     CONSTRAINT [FK_WorkoutTemplateExercise_Exercise] FOREIGN KEY ([ExerciseId]) REFERENCES [dbo].[Exercise] ([ExerciseId]),
     CONSTRAINT [FK_WorkoutTemplateExercise_WorkoutTemplate] FOREIGN KEY ([WorkoutTemplateId]) REFERENCES [dbo].[WorkoutTemplate] ([WorkoutTemplateId])
 );

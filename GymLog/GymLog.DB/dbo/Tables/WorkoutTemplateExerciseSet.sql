@@ -4,7 +4,7 @@
     [Set]                          INT NOT NULL,
     [Reps]                         INT NOT NULL,
     [Intensity]                    INT NOT NULL,
-    PRIMARY KEY CLUSTERED ([WorkoutTemplateExerciseSetId] ASC),
+    CONSTRAINT [PK_WorkoutTemplateExerciseSet] PRIMARY KEY CLUSTERED ([WorkoutTemplateExerciseSetId] ASC),
     CONSTRAINT [FK_WorkoutTemplateExerciseSet_WorkoutTemplateExercise] FOREIGN KEY ([WorkoutTemplateExerciseId]) REFERENCES [dbo].[WorkoutTemplateExercise] ([WorkoutTemplateExerciseId])
 );
 
