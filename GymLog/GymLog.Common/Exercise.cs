@@ -15,6 +15,14 @@ public partial class Exercise
 
     public int? EstimatedOneRepMax { get; set; }
 
+    public DateTime CreatedAt { get; set; }
+
+    public string CreatedBy { get; set; } = null!;
+
+    public DateTime UpdatedAt { get; set; }
+
+    public string UpdatedBy { get; set; } = null!;
+
     public virtual BodyPart BodyPart { get; set; } = null!;
 
     public virtual ExerciseCategory ExerciseCategory { get; set; } = null!;

@@ -45,6 +45,18 @@ public partial class GymLogContext : DbContext
             entity.Property(e => e.BodyPartName)
                 .HasMaxLength(50)
                 .IsUnicode(false);
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getutcdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.CreatedBy)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.UpdatedAt)
+                .HasDefaultValueSql("(getutcdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.UpdatedBy)
+                .HasMaxLength(50)
+                .IsUnicode(false);
         });
 
         modelBuilder.Entity<Exercise>(entity =>
@@ -53,7 +65,19 @@ public partial class GymLogContext : DbContext
 
             entity.HasIndex(e => e.ExerciseName, "UQ_Exercise_ExerciseName").IsUnique();
 
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getutcdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.CreatedBy)
+                .HasMaxLength(50)
+                .IsUnicode(false);
             entity.Property(e => e.ExerciseName)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.UpdatedAt)
+                .HasDefaultValueSql("(getutcdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.UpdatedBy)
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
@@ -74,7 +98,19 @@ public partial class GymLogContext : DbContext
 
             entity.HasIndex(e => e.ExerciseCategoryName, "UQ_ExerciseCategory_ExerciseCategoryName").IsUnique();
 
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getutcdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.CreatedBy)
+                .HasMaxLength(50)
+                .IsUnicode(false);
             entity.Property(e => e.ExerciseCategoryName)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.UpdatedAt)
+                .HasDefaultValueSql("(getutcdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.UpdatedBy)
                 .HasMaxLength(50)
                 .IsUnicode(false);
         });
@@ -85,6 +121,18 @@ public partial class GymLogContext : DbContext
 
             entity.HasIndex(e => e.WorkoutProgramName, "UQ_WorkoutProgram_WorkoutProgramName").IsUnique();
 
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getutcdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.CreatedBy)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.UpdatedAt)
+                .HasDefaultValueSql("(getutcdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.UpdatedBy)
+                .HasMaxLength(50)
+                .IsUnicode(false);
             entity.Property(e => e.WorkoutProgramName)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -96,6 +144,18 @@ public partial class GymLogContext : DbContext
 
             entity.HasIndex(e => e.WorkoutTemplateName, "UQ_WorkoutTemplate_WorkoutTemplateName").IsUnique();
 
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getutcdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.CreatedBy)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.UpdatedAt)
+                .HasDefaultValueSql("(getutcdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.UpdatedBy)
+                .HasMaxLength(50)
+                .IsUnicode(false);
             entity.Property(e => e.WorkoutTemplateName)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -109,6 +169,19 @@ public partial class GymLogContext : DbContext
         modelBuilder.Entity<WorkoutTemplateExercise>(entity =>
         {
             entity.ToTable("WorkoutTemplateExercise");
+
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getutcdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.CreatedBy)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.UpdatedAt)
+                .HasDefaultValueSql("(getutcdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.UpdatedBy)
+                .HasMaxLength(50)
+                .IsUnicode(false);
 
             entity.HasOne(d => d.Exercise).WithMany(p => p.WorkoutTemplateExercises)
                 .HasForeignKey(d => d.ExerciseId)
@@ -124,6 +197,19 @@ public partial class GymLogContext : DbContext
         modelBuilder.Entity<WorkoutTemplateExerciseSet>(entity =>
         {
             entity.ToTable("WorkoutTemplateExerciseSet");
+
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getutcdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.CreatedBy)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.UpdatedAt)
+                .HasDefaultValueSql("(getutcdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.UpdatedBy)
+                .HasMaxLength(50)
+                .IsUnicode(false);
 
             entity.HasOne(d => d.WorkoutTemplateExercise).WithMany(p => p.WorkoutTemplateExerciseSets)
                 .HasForeignKey(d => d.WorkoutTemplateExerciseId)

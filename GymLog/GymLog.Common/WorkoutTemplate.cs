@@ -15,6 +15,14 @@ public partial class WorkoutTemplate
 
     public int Day { get; set; }
 
+    public DateTime CreatedAt { get; set; }
+
+    public string CreatedBy { get; set; } = null!;
+
+    public DateTime UpdatedAt { get; set; }
+
+    public string UpdatedBy { get; set; } = null!;
+
     public virtual WorkoutProgram WorkoutProgram { get; set; } = null!;
 
     public virtual ICollection<WorkoutTemplateExercise> WorkoutTemplateExercises { get; set; } = new List<WorkoutTemplateExercise>();

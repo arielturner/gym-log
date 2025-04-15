@@ -13,6 +13,14 @@ public partial class WorkoutTemplateExercise
 
     public int Sequence { get; set; }
 
+    public DateTime CreatedAt { get; set; }
+
+    public string CreatedBy { get; set; } = null!;
+
+    public DateTime UpdatedAt { get; set; }
+
+    public string UpdatedBy { get; set; } = null!;
+
     public virtual Exercise Exercise { get; set; } = null!;
 
     public virtual WorkoutTemplate WorkoutTemplate { get; set; } = null!;
