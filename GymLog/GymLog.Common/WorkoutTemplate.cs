@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace GymLog.Common;
+
+public partial class WorkoutTemplate
+{
+    public int WorkoutTemplateId { get; set; }
+
+    public string WorkoutTemplateName { get; set; } = null!;
+
+    public int WorkoutProgramId { get; set; }
+
+    public int Week { get; set; }
+
+    public int Day { get; set; }
+
+    public virtual WorkoutProgram WorkoutProgram { get; set; } = null!;
+
+    public virtual ICollection<WorkoutTemplateExercise> WorkoutTemplateExercises { get; set; } = new List<WorkoutTemplateExercise>();
+}

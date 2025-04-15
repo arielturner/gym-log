@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymLog.DataAccess", "GymLog
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymLog.Common", "GymLog.Common\GymLog.Common.csproj", "{9EC4E3FE-DDBA-4758-BAEE-93E66B2A070A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymLog.ConsoleApp", "GymLog.ConsoleApp\GymLog.ConsoleApp.csproj", "{DAAB678A-FA96-4DE2-B924-66D62F985E3B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{9EC4E3FE-DDBA-4758-BAEE-93E66B2A070A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EC4E3FE-DDBA-4758-BAEE-93E66B2A070A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EC4E3FE-DDBA-4758-BAEE-93E66B2A070A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAAB678A-FA96-4DE2-B924-66D62F985E3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAAB678A-FA96-4DE2-B924-66D62F985E3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAAB678A-FA96-4DE2-B924-66D62F985E3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAAB678A-FA96-4DE2-B924-66D62F985E3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
