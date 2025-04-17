@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using GymLog.Common;
 using Microsoft.EntityFrameworkCore;
 
-namespace GymLog.DataAccess;
+namespace GymLog.DAL;
 
 public partial class GymLogContext : DbContext
 {

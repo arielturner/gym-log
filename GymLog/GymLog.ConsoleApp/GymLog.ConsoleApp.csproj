@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GymLog.DataAccess\GymLog.DataAccess.csproj" />
+    <ProjectReference Include="..\GymLog.DAL\GymLog.DAL.csproj" />
   </ItemGroup>
 
 </Project>
