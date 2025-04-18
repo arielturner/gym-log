@@ -2,7 +2,7 @@
 
 namespace GymLog.BLL.Services;
 
-public class BodyPartService(GymLogContext gymLogContext) : IBodyPartService
+public class BodyPartsService(GymLogContext gymLogContext) : IBodyPartsService
 {
     public BodyPartDto CreateBodyPart(BodyPartDto bodyPart)
     {

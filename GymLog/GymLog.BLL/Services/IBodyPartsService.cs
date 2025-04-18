@@ -7,7 +7,7 @@ using GymLog.Common.DTOs;
 
 namespace GymLog.BLL.Services;
 
-public interface IBodyPartService
+public interface IBodyPartsService
 {
     /// <summary>
     /// Get all body parts
