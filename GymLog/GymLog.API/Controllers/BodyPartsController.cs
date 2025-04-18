@@ -28,10 +28,6 @@ public class BodyPartsController : ControllerBase
     public IActionResult GetBodyPartById(int id)
     {
         var bodyPart = _bodyPartService.GetBodyPartById(id);
-        if (bodyPart == null)
-        {
-            return NotFound();
-        }
         return Ok(bodyPart);
     }
 
@@ -39,11 +35,6 @@ public class BodyPartsController : ControllerBase
     [HttpPost]
     public IActionResult CreateBodyPart([FromBody] BodyPartDto bodyPart)
     {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-
         var createdBodyPart = _bodyPartService.CreateBodyPart(bodyPart);
         return CreatedAtAction(nameof(GetBodyPartById), new { id = createdBodyPart.BodyPartId }, createdBodyPart);
     }
@@ -52,11 +43,6 @@ public class BodyPartsController : ControllerBase
     [HttpPut("{id}")]
     public IActionResult UpdateBodyPart(int id, [FromBody] BodyPartDto bodyPart)
     {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-
         if (id != bodyPart.BodyPartId)
         {
             return BadRequest("ID mismatch");
