@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using GymLog.Common;
 using Microsoft.EntityFrameworkCore;
 
-namespace GymLog.DAL;
+namespace GymLog.BLL;
 
 public partial class GymLogContext : DbContext
 {
