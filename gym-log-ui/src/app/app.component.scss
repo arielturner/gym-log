@@ -29,3 +29,8 @@ h1.sidenav-app-name {
      `<body>` to be our scrolling element for mobile layouts. */
   flex: 1 0 auto;
 }
+
+.gymlog-sidenav-content {
+  height: 100vh;
+  padding: 0 1em;
+}
