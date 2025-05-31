@@ -39,7 +39,21 @@ try
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
+    // Add CORS policy to allow localhost:4200
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("AllowLocalhost4200", policy =>
+        {
+            policy.WithOrigins("http://localhost:4200")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+    });
+
     var app = builder.Build();
+
+    // Use CORS policy
+    app.UseCors("AllowLocalhost4200");
 
     app.UseExceptionHandler(errorApp =>
     {
