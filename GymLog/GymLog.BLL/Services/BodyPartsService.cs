@@ -1,4 +1,5 @@
 ﻿using GymLog.Common.DTOs;
+using Microsoft.Extensions.Caching.Memory;
 using Serilog;
 
 namespace GymLog.BLL.Services;
@@ -6,10 +7,12 @@ namespace GymLog.BLL.Services;
 public class BodyPartsService : IBodyPartsService
 {
     private readonly GymLogContext _gymLogContext;
+    private readonly IMemoryCache _memoryCache;
 
-    public BodyPartsService(GymLogContext gymLogContext)
+    public BodyPartsService(GymLogContext gymLogContext, IMemoryCache memoryCache)
     {
         _gymLogContext = gymLogContext;
+        _memoryCache = memoryCache;
     }
 
     public BodyPartDto CreateBodyPart(BodyPartDto bodyPart)
@@ -25,6 +28,8 @@ public class BodyPartsService : IBodyPartsService
 
             _gymLogContext.BodyParts.Add(newBodyPart);
             _gymLogContext.SaveChanges();
+
+            _memoryCache.Remove(CacheKeys.BodyParts); // Invalidate cache after creating a new body part
 
             return new BodyPartDto
             {
@@ -69,13 +74,19 @@ public class BodyPartsService : IBodyPartsService
     {
         try
         {
-            var bodyParts = _gymLogContext.BodyParts;
-
-            return bodyParts.Select(bp => new BodyPartDto
+            var cachedValue = _memoryCache.GetOrCreate(CacheKeys.BodyParts, entry =>
             {
-                BodyPartId = bp.BodyPartId,
-                BodyPartName = bp.BodyPartName
+                entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
+                
+                var bodyParts = _gymLogContext.BodyParts;
+                return bodyParts.Select(bp => new BodyPartDto
+                {
+                    BodyPartId = bp.BodyPartId,
+                    BodyPartName = bp.BodyPartName
+                }).ToList();
             });
+
+            return cachedValue!;
         }
         catch (Exception ex)
         {

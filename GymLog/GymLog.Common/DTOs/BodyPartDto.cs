@@ -11,8 +11,8 @@ public class BodyPartDto
     public string BodyPartName { get; set; } = null!;
 
     [JsonIgnore]
-    public string CreatedBy { get; set; } = null!;
+    public string? CreatedBy { get; set; }
 
     [JsonIgnore]
-    public string UpdatedBy { get; set; } = null!;
+    public string? UpdatedBy { get; set; }
 }

@@ -1,8 +1,10 @@
+using GymLog.API.Services;
 using GymLog.API.Utilities;
 using GymLog.BLL;
 using GymLog.BLL.Services;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.AspNetCore.Server.IISIntegration;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -18,6 +20,9 @@ try
     var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddSerilog();
 
+    builder.Services.AddMemoryCache();
+    builder.Services.AddHttpContextAccessor();
+
     // Add services to the container.
     builder.Services.AddControllers(options =>
     {
@@ -32,12 +37,15 @@ try
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
     });
 
-    // Register BodyPartsService and IBodyPartsService
+    // Register my services
     builder.Services.AddScoped<IBodyPartsService, BodyPartsService>();
+    builder.Services.AddTransient<ICurrentUserService, CurrentUserService>();
 
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
+
+    builder.Services.AddAuthentication(IISDefaults.AuthenticationScheme);
 
     // Add CORS policy to allow localhost:4200
     builder.Services.AddCors(options =>
@@ -46,7 +54,8 @@ try
         {
             policy.WithOrigins("http://localhost:4200")
                   .AllowAnyHeader()
-                  .AllowAnyMethod();
+                  .AllowAnyMethod()
+                  .AllowCredentials();
         });
     });
 
@@ -89,6 +98,7 @@ try
 
     app.UseHttpsRedirection();
 
+    app.UseAuthentication();
     app.UseAuthorization();
 
     app.MapControllers();

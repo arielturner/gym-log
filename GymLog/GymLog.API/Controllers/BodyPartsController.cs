@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using GymLog.BLL.Services;
 using GymLog.Common.DTOs;
+using GymLog.API.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GymLog.API.Controllers;
 
@@ -9,10 +11,12 @@ namespace GymLog.API.Controllers;
 public class BodyPartsController : ControllerBase
 {
     private readonly IBodyPartsService _bodyPartService;
+    private readonly ICurrentUserService _currentUserService;
 
-    public BodyPartsController(IBodyPartsService bodyPartService)
+    public BodyPartsController(IBodyPartsService bodyPartService, ICurrentUserService currentUserService)
     {
         _bodyPartService = bodyPartService;
+        _currentUserService = currentUserService;
     }
 
     // GET: api/body-parts
@@ -35,6 +39,9 @@ public class BodyPartsController : ControllerBase
     [HttpPost]
     public IActionResult CreateBodyPart([FromBody] BodyPartDto bodyPart)
     {
+        bodyPart.CreatedBy = _currentUserService.UserName;
+        bodyPart.UpdatedBy = _currentUserService.UserName;
+
         var createdBodyPart = _bodyPartService.CreateBodyPart(bodyPart);
         return CreatedAtAction(nameof(GetBodyPartById), new { id = createdBodyPart.BodyPartId }, createdBodyPart);
     }
