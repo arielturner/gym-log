@@ -39,8 +39,10 @@ public class BodyPartsController : ControllerBase
     [HttpPost]
     public IActionResult CreateBodyPart([FromBody] BodyPartDto bodyPart)
     {
-        bodyPart.CreatedBy = _currentUserService.UserName;
-        bodyPart.UpdatedBy = _currentUserService.UserName;
+        // TODO having trouble with unauthorized error when making request from angular
+        // have to allow anonymous authorization but this breaks getting username from swagger page
+        bodyPart.CreatedBy = _currentUserService.UserName ?? "Ariel";
+        bodyPart.UpdatedBy = _currentUserService.UserName ?? "Ariel";
 
         var createdBodyPart = _bodyPartService.CreateBodyPart(bodyPart);
         return CreatedAtAction(nameof(GetBodyPartById), new { id = createdBodyPart.BodyPartId }, createdBodyPart);

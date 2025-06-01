@@ -1,11 +1,11 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" matSort (matSortChange)="onSortChange($event)">
   <ng-container matColumnDef="bodyPartId">
-    <th mat-header-cell *matHeaderCellDef>Id</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
     <td mat-cell *matCellDef="let element">{{element.bodyPartId}}</td>
   </ng-container>
 
   <ng-container matColumnDef="bodyPartName">
-    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
     <td mat-cell *matCellDef="let element">{{element.bodyPartName}}</td>
   </ng-container>
 
