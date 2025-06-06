@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { AddEditBodyPartComponent } from './add-edit-body-part/add-edit-body-part.component';
+import { BodyPart } from './body-part.model';
 
 @Component({
   selector: 'app-body-parts-page',
@@ -16,7 +17,7 @@ export class BodyPartsPageComponent {
   
   openAddBodyPartDialog() {
     const dialogRef = this.dialog.open(AddEditBodyPartComponent, {
-      data: {},
+      data: null,
     });
 
     dialogRef.afterClosed().subscribe(result => {

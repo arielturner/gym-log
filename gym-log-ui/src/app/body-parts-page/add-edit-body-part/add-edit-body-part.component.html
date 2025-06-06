@@ -1,1 +1,19 @@
-<p>add-edit-body-part works!</p>
+@if (isAddMode) {
+  <h2 mat-dialog-title>Add new body part</h2>
+} @else {
+  <h2 mat-dialog-title>Edit body part</h2>
+}
+
+<mat-dialog-content>
+  <p>Enter the details of the body part:</p>
+  <form [formGroup]="bodyPartForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label for="body-part-name">Name: </mat-label>
+      <input matInput required id="body-part-name" type="text" formControlName="bodyPartName" />
+    </mat-form-field>
+
+    <mat-dialog-actions>
+      <button matButton  type="submit" [disabled]="!bodyPartForm.valid" type="submit">Submit</button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>
