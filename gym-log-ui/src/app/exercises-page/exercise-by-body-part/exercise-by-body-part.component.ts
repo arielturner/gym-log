@@ -1,4 +1,5 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
+import { ExercisesService } from '../exercises.service';
 
 @Component({
   selector: 'app-exercise-by-body-part',
@@ -6,12 +7,21 @@ import { Component, input } from '@angular/core';
   templateUrl: './exercise-by-body-part.component.html',
   styleUrl: './exercise-by-body-part.component.scss'
 })
-export class ExerciseByBodyPartComponent {
-  bodyPartId = input();
+export class ExerciseByBodyPartComponent implements OnInit {
+  bodyPartId = input.required<number>();
 
-  constructor() {
-    // This component is designed to be used with a specific bodyPartId input.
-    // The bodyPartId will be used to filter or display exercises related to that body part.
-    console.log('ExerciseByBodyPartComponent initialized with bodyPartId:', this.bodyPartId);
+  private exercisesService = inject(ExercisesService);
+
+  constructor() { }
+
+  ngOnInit() {
+    this.exercisesService.getExercisesByBodyPart(this.bodyPartId()).subscribe({
+      next: (exercises) => {
+        console.log('Exercises for body part:', exercises);
+      },
+      error: (error) => {
+        console.error('Error fetching exercises:', error);
+      }
+    });
   }
 }
