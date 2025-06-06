@@ -6,6 +6,7 @@ import { MatSortModule, Sort } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { AddEditBodyPartComponent } from '../add-edit-body-part/add-edit-body-part.component';
+import { SortService } from '../../sort.service';
 
 @Component({
   selector: 'app-body-parts',
@@ -15,6 +16,7 @@ import { AddEditBodyPartComponent } from '../add-edit-body-part/add-edit-body-pa
 })
 export class BodyPartsComponent {
   private bodyPartsService = inject(BodyPartsService);
+  private sortService = inject(SortService);
   readonly dialog = inject(MatDialog);
 
   displayedColumns: string[] = ['bodyPartId', 'bodyPartName', 'actions'];
@@ -26,7 +28,7 @@ export class BodyPartsComponent {
   constructor() {
     this.bodyPartsService.getBodyParts().subscribe({
       next: (bodyParts: BodyPart[]) => {
-        this.dataSource = this.sortBy(bodyParts, 'bodyPartId');
+        this.dataSource = this.sortService.sortBy(bodyParts, 'bodyPartId');
       },
       error: (error) => {
         console.error('Error fetching body parts:', error);
@@ -49,26 +51,13 @@ export class BodyPartsComponent {
 
   onSortChange(sortState: Sort) {
     if (!sortState.direction) {
-      this.dataSource = this.sortBy(this.dataSource, 'bodyPartId');
+      this.dataSource = this.sortService.sortBy(this.dataSource, 'bodyPartId');
     } else {
-      this.dataSource = this.sortBy(this.dataSource, sortState.active, sortState.direction === 'asc');
+      this.dataSource = this.sortService.sortBy(this.dataSource, sortState.active, sortState.direction === 'asc');
     }
 
     if (this.table) {
       this.table.renderRows();
     }
-  }
-
-  sortBy(data: BodyPart[], column: string, ascending: boolean = true): BodyPart[] {
-    return data.sort((a, b) => {
-      const valueA = (a as any)[column];
-      const valueB = (b as any)[column];
-
-      if (ascending) {
-        return valueA > valueB ? 1 : -1;
-      } else {
-        return valueA > valueB ? -1 : 1;
-      }
-    });
   }
 }
