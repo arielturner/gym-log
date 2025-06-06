@@ -1,6 +1,6 @@
 import { Component, inject, ViewChild } from '@angular/core';
-import { BodyPartsService } from '../services/body-parts.service';
-import { BodyPart } from '../models/body-part.model';
+import { BodyPartsService } from './body-parts.service';
+import { BodyPart } from './body-part.model';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { MatSortModule, Sort } from '@angular/material/sort';
 

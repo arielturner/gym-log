@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 
-import { BodyPart } from '../models/body-part.model';
+import { BodyPart } from './body-part.model';
 import { environment } from '../../environments/environment';
 
 @Injectable({
