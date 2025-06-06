@@ -39,6 +39,7 @@ try
 
     // Register my services
     builder.Services.AddScoped<IBodyPartsService, BodyPartsService>();
+    builder.Services.AddScoped<IExercisesService, ExercisesService>();
     builder.Services.AddTransient<ICurrentUserService, CurrentUserService>();
 
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
