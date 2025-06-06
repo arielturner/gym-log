@@ -6,10 +6,11 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
+import { LoadingSpinnerComponent } from "./loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatSidenavModule, MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, RouterLink],
+  imports: [RouterOutlet, MatSidenavModule, MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, RouterLink, LoadingSpinnerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
