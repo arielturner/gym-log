@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymLog.BLL", "GymLog.BLL\Gy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymLog.BLL.UnitTests", "GymLog.BLL.UnitTests\GymLog.BLL.UnitTests.csproj", "{E1507301-E254-4A94-B82C-9E69B7693340}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymLog.UI", "GymLog.UI\GymLog.UI.csproj", "{0E74CB3A-FD94-4F14-8204-ACFF14F56510}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{E1507301-E254-4A94-B82C-9E69B7693340}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1507301-E254-4A94-B82C-9E69B7693340}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1507301-E254-4A94-B82C-9E69B7693340}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E74CB3A-FD94-4F14-8204-ACFF14F56510}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E74CB3A-FD94-4F14-8204-ACFF14F56510}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E74CB3A-FD94-4F14-8204-ACFF14F56510}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E74CB3A-FD94-4F14-8204-ACFF14F56510}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

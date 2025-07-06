@@ -1,0 +1,53 @@
+﻿@model List<GymLog.UI.Models.BodyPart>
+
+@{
+    ViewData["Title"] = "BodyParts";
+}
+
+<h1>BodyParts</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model[0].BodyPartId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].BodyPartName)
+            </th>
+            @* <th> *@
+            @*     @Html.DisplayNameFor(model => model.CreatedBy) *@
+            @* </th> *@
+            @* <th> *@
+            @*     @Html.DisplayNameFor(model => model.UpdatedBy) *@
+            @* </th> *@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BodyPartId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BodyPartName)
+                </td>
+                @* <td> *@
+                @*     @Html.DisplayFor(modelItem => item.Genre) *@
+                @* </td> *@
+                @* <td> *@
+                @*     @Html.DisplayFor(modelItem => item.Price) *@
+                @* </td> *@
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.BodyPartId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.BodyPartId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
