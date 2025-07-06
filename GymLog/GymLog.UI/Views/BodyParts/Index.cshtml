@@ -1,10 +1,10 @@
 ﻿@model List<GymLog.UI.Models.BodyPart>
 
 @{
-    ViewData["Title"] = "BodyParts";
+    ViewData["Title"] = "Body Parts";
 }
 
-<h1>BodyParts</h1>
+<h1>Body Parts</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -38,10 +38,10 @@
                     @Html.DisplayFor(modelItem => item.BodyPartName)
                 </td>
                 @* <td> *@
-                @*     @Html.DisplayFor(modelItem => item.Genre) *@
+                @*     @Html.DisplayFor(modelItem => item.CreatedBy) *@
                 @* </td> *@
                 @* <td> *@
-                @*     @Html.DisplayFor(modelItem => item.Price) *@
+                @*     @Html.DisplayFor(modelItem => item.UpdatedBy) *@
                 @* </td> *@
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.BodyPartId">Edit</a> |
