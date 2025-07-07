@@ -38,9 +38,8 @@ namespace GymLog.UI.Controllers
             }
             catch (Exception ex)
             {
-                // Handle the exception (e.g., log it, show an error message)
-                ModelState.AddModelError("", ex.Message);
-                return View("Index", _bodyPartsService.GetAllBodyParts());
+                TempData["DeleteError"] = ex.Message;
+                return RedirectToAction("Index");
             }
         }
     }

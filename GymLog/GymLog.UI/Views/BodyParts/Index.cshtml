@@ -6,9 +6,13 @@
 
 <h1>Body Parts</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if (TempData["DeleteError"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["DeleteError"]
+    </div>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -44,10 +48,14 @@
                 @*     @Html.DisplayFor(modelItem => item.UpdatedBy) *@
                 @* </td> *@
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.BodyPartId">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@item.BodyPartId">Delete</a>
+                    <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.BodyPartId">Edit</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.BodyPartId">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>

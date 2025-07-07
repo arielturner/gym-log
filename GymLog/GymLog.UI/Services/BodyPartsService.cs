@@ -46,7 +46,7 @@ public class BodyPartsService : IBodyPartsService
             var exercises = _gymLogContext.Entry(bodyPart).Collection(bp => bp.Exercises).Query().Count();
             if (exercises > 0)
             {
-                throw new InvalidOperationException($"Cannot delete body part with id {id} because it is associated with {exercises} exercises.");
+                throw new InvalidOperationException($"Cannot delete body part with id {id} because it is associated with {exercises} exercise(s).");
             }
 
             _gymLogContext.BodyParts.Remove(bodyPart);
