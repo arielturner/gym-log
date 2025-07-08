@@ -18,6 +18,7 @@ builder.Services.AddDbContext<GymLogContext>(options =>
 // Register my services
 builder.Services.AddScoped<IBodyPartsService, BodyPartsService>();
 builder.Services.AddScoped<IExerciseCategoriesService, ExerciseCategoriesService>();
+builder.Services.AddScoped<IExercisesService, ExercisesService>();
 
 builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
    .AddNegotiate();

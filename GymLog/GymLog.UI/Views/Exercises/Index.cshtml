@@ -1,0 +1,65 @@
+﻿@model List<GymLog.UI.Models.Exercise>
+
+@{
+    ViewData["Title"] = "Exercises";
+}
+
+<h1>Exercises</h1>
+
+@if (TempData["DeleteError"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["DeleteError"]
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model[0].ExerciseId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].ExerciseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].BodyPart) @Html.DisplayNameFor(model => model[0].BodyPart.BodyPartName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].ExerciseCategory) @Html.DisplayNameFor(model => model[0].ExerciseCategory.ExerciseCategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].EstimatedOneRepMax)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExerciseId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExerciseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BodyPart.BodyPartName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExerciseCategory.ExerciseCategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstimatedOneRepMax)
+                </td>
+                <td>
+                    <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.ExerciseId">Edit</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ExerciseId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-primary" asp-action="Create">Create New</a>

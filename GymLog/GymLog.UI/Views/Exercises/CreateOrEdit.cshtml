@@ -1,0 +1,50 @@
+﻿@model GymLog.UI.Models.Exercise
+
+@if (Model.ExerciseId == 0)
+{
+    ViewData["Title"] = "Create Exercise";
+    <h2>Create Exercise</h2>
+}
+else
+{
+    ViewData["Title"] = "Edit Exercise";
+    <h2>Edit Exercise</h2>
+}
+
+<form asp-action="SaveExercise" method="post">
+    <div class="form-group">
+        <label asp-for="ExerciseName" class="control-label"></label>
+        <input asp-for="ExerciseName" class="form-control" />
+        <span asp-validation-for="ExerciseName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="BodyPartId" class="control-label"></label>
+
+        @Html.DropDownList("BodyPartId",
+            ViewBag.BodyParts, 
+            null, 
+            new { @class = "form-control" })
+
+        <span asp-validation-for="BodyPartId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ExerciseCategoryId" class="control-label"></label>
+
+        @Html.DropDownList("ExerciseCategoryId",
+            ViewBag.ExerciseCategories,
+            null,
+            new { @class = "form-control" })
+
+        <span asp-validation-for="ExerciseCategoryId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EstimatedOneRepMax" class="control-label"></label>
+        <input asp-for="EstimatedOneRepMax" type="number" step="5" class="form-control" />
+        <span asp-validation-for="EstimatedOneRepMax" class="text-danger"></span>
+    </div>
+
+    <input type="hidden" asp-for="ExerciseId" />
+    <br/>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-controller="Exercises" asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
