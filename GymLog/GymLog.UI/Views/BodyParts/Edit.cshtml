@@ -1,6 +1,20 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model GymLog.UI.Models.BodyPart
+
 @{
-    <p>Edit</p>
+    ViewData["Title"] = "Edit Body Part";
 }
+
+<h2>Edit Body Part</h2>
+
+<form asp-action="SaveBodyPart" method="post">
+    <div class="form-group">
+        <label asp-for="BodyPartName" class="control-label"></label>
+        <input asp-for="BodyPartName" class="form-control" />
+        <span asp-validation-for="BodyPartName" class="text-danger"></span>
+    </div>
+    <input type="hidden" asp-for="BodyPartId" />
+
+    <br/>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-controller="BodyParts" asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

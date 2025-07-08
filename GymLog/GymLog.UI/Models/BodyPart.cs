@@ -16,15 +16,13 @@ public partial class BodyPart
 
     public DateTime CreatedAt { get; set; }
 
-    [Required]
     [StringLength(50)]
-    public string CreatedBy { get; set; } = null!;
+    public string? CreatedBy { get; set; }
 
     public DateTime UpdatedAt { get; set; }
 
-    [Required]
     [StringLength(50)]
-    public string UpdatedBy { get; set; } = null!;
+    public string? UpdatedBy { get; set; }
 
     public virtual ICollection<Exercise> Exercises { get; set; } = new List<Exercise>();
 }

@@ -21,8 +21,7 @@ public class BodyPartsService : IBodyPartsService
         {
             _gymLogContext.BodyParts.Add(bodyPart);
             _gymLogContext.SaveChanges();
-
-            _memoryCache.Remove(CacheKeys.BodyParts); // Invalidate cache after creating a new body part
+            _memoryCache.Remove(CacheKeys.BodyParts);
 
             return bodyPart;
         }
@@ -51,6 +50,7 @@ public class BodyPartsService : IBodyPartsService
 
             _gymLogContext.BodyParts.Remove(bodyPart);
             _gymLogContext.SaveChanges();
+            _memoryCache.Remove(CacheKeys.BodyParts);
         }
         catch (Exception ex)
         {
@@ -114,6 +114,7 @@ public class BodyPartsService : IBodyPartsService
             existingBodyPart.UpdatedAt = DateTime.UtcNow;
 
             _gymLogContext.SaveChanges();
+            _memoryCache.Remove(CacheKeys.BodyParts);
 
             return bodyPart;
         }
