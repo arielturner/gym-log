@@ -12,7 +12,7 @@ public partial class ExerciseCategory
     [Required]
     [StringLength(50)]
     [Display(Name = "Name")]
-    public required string ExerciseCategoryName { get; set; }
+    public string? ExerciseCategoryName { get; set; }
 
     public DateTime CreatedAt { get; set; }
 

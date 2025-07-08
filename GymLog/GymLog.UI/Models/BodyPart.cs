@@ -12,7 +12,7 @@ public partial class BodyPart
     [Required]
     [StringLength(50)]
     [Display(Name = "Name")]
-    public required string BodyPartName { get; set; }
+    public string? BodyPartName { get; set; }
 
     public DateTime CreatedAt { get; set; }
 
