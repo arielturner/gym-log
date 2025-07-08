@@ -1,10 +1,15 @@
 ﻿@model GymLog.UI.Models.BodyPart
 
-@{
-    ViewData["Title"] = "Edit Body Part";
+@if (Model.BodyPartId == 0)
+{
+    ViewData["Title"] = "Create Body Part";
+    <h2>Create Body Part</h2>
 }
-
-<h2>Edit Body Part</h2>
+else
+{
+    ViewData["Title"] = "Edit Body Part";
+    <h2>Edit Body Part</h2>
+}
 
 <form asp-action="SaveBodyPart" method="post">
     <div class="form-group">

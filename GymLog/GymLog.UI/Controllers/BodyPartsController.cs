@@ -20,18 +20,37 @@ namespace GymLog.UI.Controllers
             return View(bodyParts);
         }
 
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                _bodyPartsService.DeleteBodyPart(id);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["DeleteError"] = ex.Message;
+                return RedirectToAction("Index");
+            }
+        }
+
         public IActionResult Edit(int id)
         {
 
             var bodyPart = _bodyPartsService.GetBodyPartById(id);
-            return View("Edit", bodyPart);
+            return View("CreateOrEdit", bodyPart);
+        }
+
+        public IActionResult Create()
+        {
+            return View("CreateOrEdit", new BodyPart());
         }
 
         public IActionResult SaveBodyPart(BodyPart bodyPart)
         {
             if (!ModelState.IsValid)
             {
-                return View("Edit", bodyPart);
+                return View("CreateOrEdit", bodyPart);
             }
 
             string userName = User.Identity?.Name?.StripDomain() ?? "unknown";
@@ -46,27 +65,8 @@ namespace GymLog.UI.Controllers
             {
                 _bodyPartsService.UpdateBodyPart(bodyPart);
             }
-                
+
             return RedirectToAction("Index");
-        }
-
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        public IActionResult Delete(int id)
-        {
-            try
-            {
-                _bodyPartsService.DeleteBodyPart(id);
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-                TempData["DeleteError"] = ex.Message;
-                return RedirectToAction("Index");
-            }
         }
     }
 }
