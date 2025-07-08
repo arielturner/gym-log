@@ -22,12 +22,6 @@
             <th>
                 @Html.DisplayNameFor(model => model[0].BodyPartName)
             </th>
-            @* <th> *@
-            @*     @Html.DisplayNameFor(model => model.CreatedBy) *@
-            @* </th> *@
-            @* <th> *@
-            @*     @Html.DisplayNameFor(model => model.UpdatedBy) *@
-            @* </th> *@
             <th></th>
         </tr>
     </thead>
@@ -41,12 +35,6 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.BodyPartName)
                 </td>
-                @* <td> *@
-                @*     @Html.DisplayFor(modelItem => item.CreatedBy) *@
-                @* </td> *@
-                @* <td> *@
-                @*     @Html.DisplayFor(modelItem => item.UpdatedBy) *@
-                @* </td> *@
                 <td>
                     <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.BodyPartId">Edit</a>
                     <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.BodyPartId">Delete</a>

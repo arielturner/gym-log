@@ -1,0 +1,49 @@
+﻿@model List<GymLog.UI.Models.ExerciseCategory>
+
+@{
+    ViewData["Title"] = "Exercise Categories";
+}
+
+<h1>Exercise Categories</h1>
+
+@if (TempData["DeleteError"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["DeleteError"]
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model[0].ExerciseCategoryId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].ExerciseCategoryName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExerciseCategoryId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExerciseCategoryName)
+                </td>
+                <td>
+                    <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.ExerciseCategoryId">Edit</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ExerciseCategoryId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>

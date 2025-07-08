@@ -11,8 +11,8 @@ public partial class BodyPart
 
     [Required]
     [StringLength(50)]
-    [Display(Name = "Body Part Name")]
-    public string BodyPartName { get; set; }
+    [Display(Name = "Name")]
+    public required string BodyPartName { get; set; }
 
     public DateTime CreatedAt { get; set; }
 
