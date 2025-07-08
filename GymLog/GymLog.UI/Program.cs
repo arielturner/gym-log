@@ -1,5 +1,6 @@
 using GymLog.UI.Models;
 using GymLog.UI.Services;
+using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,9 @@ builder.Services.AddDbContext<GymLogContext>(options =>
 // Register my services
 builder.Services.AddScoped<IBodyPartsService, BodyPartsService>();
 
+builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+   .AddNegotiate();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,6 +36,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
