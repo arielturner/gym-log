@@ -13,6 +13,8 @@ public partial class WorkoutTemplateExerciseSet
 
     public int Reps { get; set; }
 
+    public int? RPE { get; set; }
+
     public int Intensity { get; set; }
 
     public DateTime CreatedAt { get; set; }
