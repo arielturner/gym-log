@@ -1,4 +1,5 @@
 ﻿using GymLog.Common.DTOs;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Serilog;
 
@@ -15,7 +16,7 @@ public class BodyPartsService : IBodyPartsService
         _memoryCache = memoryCache;
     }
 
-    public BodyPartDto CreateBodyPart(BodyPartDto bodyPart)
+    public async Task<BodyPartDto> CreateBodyPartAsync(BodyPartDto bodyPart)
     {
         try
         {
@@ -27,7 +28,7 @@ public class BodyPartsService : IBodyPartsService
             };
 
             _gymLogContext.BodyParts.Add(newBodyPart);
-            _gymLogContext.SaveChanges();
+            await _gymLogContext.SaveChangesAsync();
 
             _memoryCache.Remove(CacheKeys.BodyParts); // Invalidate cache after creating a new body part
 
@@ -44,24 +45,24 @@ public class BodyPartsService : IBodyPartsService
         }
     }
 
-    public void DeleteBodyPart(int id)
+    public async Task DeleteBodyPartAsync(int id)
     {
         try
         {
-            var bodyPart = _gymLogContext.Find<BodyPart>(id);
+            var bodyPart = await _gymLogContext.FindAsync<BodyPart>(id);
             if (bodyPart == null)
             {
                 throw new KeyNotFoundException($"Body part with id {id} not found.");
             }
 
-            var exercises = _gymLogContext.Entry(bodyPart).Collection(bp => bp.Exercises).Query().Count();
+            var exercises = await _gymLogContext.Entry(bodyPart).Collection(bp => bp.Exercises).Query().CountAsync();
             if (exercises > 0)
             {
                 throw new InvalidOperationException($"Cannot delete body part with id {id} because it is associated with {exercises} exercises.");
             }
 
             _gymLogContext.BodyParts.Remove(bodyPart);
-            _gymLogContext.SaveChanges();
+            await _gymLogContext.SaveChangesAsync();
         }
         catch (Exception ex)
         {
@@ -70,20 +71,21 @@ public class BodyPartsService : IBodyPartsService
         }
     }
 
-    public IEnumerable<BodyPartDto> GetAllBodyParts()
+    public async Task<IEnumerable<BodyPartDto>> GetAllBodyPartsAsync()
     {
         try
         {
-            var cachedValue = _memoryCache.GetOrCreate(CacheKeys.BodyParts, entry =>
+            var cachedValue = await _memoryCache.GetOrCreateAsync(CacheKeys.BodyParts, entry =>
             {
                 entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10);
                 
-                var bodyParts = _gymLogContext.BodyParts;
-                return bodyParts.Select(bp => new BodyPartDto
+                var bodyParts = _gymLogContext.BodyParts.Select(bp => new BodyPartDto
                 {
                     BodyPartId = bp.BodyPartId,
                     BodyPartName = bp.BodyPartName
-                }).ToList();
+                }).ToListAsync();
+
+                return bodyParts;
             });
 
             return cachedValue!;
@@ -95,11 +97,11 @@ public class BodyPartsService : IBodyPartsService
         }
     }
 
-    public BodyPartDto GetBodyPartById(int id)
+    public async Task<BodyPartDto> GetBodyPartByIdAsync(int id)
     {
         try
         {
-            var bodyPart = _gymLogContext.Find<BodyPart>(id);
+            var bodyPart = await _gymLogContext.FindAsync<BodyPart>(id);
             if (bodyPart == null)
             {
                 throw new KeyNotFoundException($"Body part with id {id} not found.");
@@ -118,11 +120,11 @@ public class BodyPartsService : IBodyPartsService
         }
     }
 
-    public BodyPartDto UpdateBodyPart(BodyPartDto bodyPart)
+    public async Task<BodyPartDto> UpdateBodyPartAsync(BodyPartDto bodyPart)
     {
         try
         {
-            var existingBodyPart = _gymLogContext.Find<BodyPart>(bodyPart.BodyPartId);
+            var existingBodyPart = await _gymLogContext.FindAsync<BodyPart>(bodyPart.BodyPartId);
             if (existingBodyPart == null)
             {
                 throw new KeyNotFoundException($"Body part with id {bodyPart.BodyPartId} not found.");
@@ -132,7 +134,7 @@ public class BodyPartsService : IBodyPartsService
             existingBodyPart.UpdatedBy = bodyPart.UpdatedBy;
             existingBodyPart.UpdatedAt = DateTime.UtcNow;
 
-            _gymLogContext.SaveChanges();
+            await _gymLogContext.SaveChangesAsync();
 
             return new BodyPartDto
             {

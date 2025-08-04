@@ -21,51 +21,51 @@ public class BodyPartsController : ControllerBase
 
     // GET: api/body-parts
     [HttpGet]
-    public IActionResult GetAllBodyParts()
+    public async Task<IActionResult> GetAllBodyParts()
     {
-        var bodyParts = _bodyPartService.GetAllBodyParts();
+        var bodyParts = await _bodyPartService.GetAllBodyPartsAsync();
         return Ok(bodyParts);
     }
 
     // GET: api/body-parts/{id}
     [HttpGet("{id}")]
-    public IActionResult GetBodyPartById(int id)
+    public async Task<IActionResult> GetBodyPartById(int id)
     {
-        var bodyPart = _bodyPartService.GetBodyPartById(id);
+        var bodyPart = await _bodyPartService.GetBodyPartByIdAsync(id);
         return Ok(bodyPart);
     }
 
     // POST: api/body-parts
     [HttpPost]
-    public IActionResult CreateBodyPart([FromBody] BodyPartDto bodyPart)
+    public async Task<IActionResult> CreateBodyPart([FromBody] BodyPartDto bodyPart)
     {
         // TODO having trouble with unauthorized error when making request from angular
         // have to allow anonymous authorization but this breaks getting username from swagger page
         bodyPart.CreatedBy = _currentUserService.UserName ?? "Ariel";
         bodyPart.UpdatedBy = _currentUserService.UserName ?? "Ariel";
 
-        var createdBodyPart = _bodyPartService.CreateBodyPart(bodyPart);
+        var createdBodyPart = await _bodyPartService.CreateBodyPartAsync(bodyPart);
         return CreatedAtAction(nameof(GetBodyPartById), new { id = createdBodyPart.BodyPartId }, createdBodyPart);
     }
 
     // PUT: api/body-parts/{id}
     [HttpPut("{id}")]
-    public IActionResult UpdateBodyPart(int id, [FromBody] BodyPartDto bodyPart)
+    public async Task<IActionResult> UpdateBodyPart(int id, [FromBody] BodyPartDto bodyPart)
     {
         if (id != bodyPart.BodyPartId)
         {
             return BadRequest("ID mismatch");
         }
 
-        var updatedBodyPart = _bodyPartService.UpdateBodyPart(bodyPart);
+        var updatedBodyPart = await _bodyPartService.UpdateBodyPartAsync(bodyPart);
         return Ok(updatedBodyPart);
     }
 
     // DELETE: api/body-parts/{id}
     [HttpDelete("{id}")]
-    public IActionResult DeleteBodyPart(int id)
+    public async Task<IActionResult> DeleteBodyPart(int id)
     {
-        _bodyPartService.DeleteBodyPart(id);
+        await _bodyPartService.DeleteBodyPartAsync(id);
         return NoContent();
     }
 }

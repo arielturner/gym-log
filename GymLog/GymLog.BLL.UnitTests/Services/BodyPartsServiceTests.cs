@@ -1,6 +1,8 @@
 ﻿using GymLog.BLL.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,7 @@ namespace GymLog.BLL.UnitTests.Services
     {
         private GymLogContext _context;
         private BodyPartsService _service;
+        private Mock<IMemoryCache> _mockCache;
 
         [TestInitialize]
         public void Setup()
@@ -30,25 +33,30 @@ namespace GymLog.BLL.UnitTests.Services
             _context.BodyParts.Add(new BodyPart { BodyPartId = 2, BodyPartName = "Back", CreatedBy = "Unit test", UpdatedBy = "Unit test" });
             _context.SaveChanges();
 
+            // Mock the memory cache
+            _mockCache = new Mock<IMemoryCache>();
+            var cacheEntry = Mock.Of<ICacheEntry>();
+            _mockCache.Setup(x => x.CreateEntry(It.IsAny<string>())).Returns(cacheEntry);
+
             // Initialize the service
-            _service = new BodyPartsService(_context);
+            _service = new BodyPartsService(_context, _mockCache.Object);
         }
 
         [TestMethod]
-        public void GetAllBodyParts_ShouldReturnAllBodyParts()
+        public async Task GetAllBodyParts_ShouldReturnAllBodyParts()
         {
             // Act
-            var result = _service.GetAllBodyParts();
+            var result = await _service.GetAllBodyPartsAsync();
 
             // Assert
             Assert.AreEqual(2, result.Count());
         }
 
         [TestMethod]
-        public void GetBodyPartById_ShouldReturnCorrectBodyPart()
+        public async Task GetBodyPartById_ShouldReturnCorrectBodyPart()
         {
             // Act
-            var result = _service.GetBodyPartById(1);
+            var result = await _service.GetBodyPartByIdAsync(1);
 
             // Assert
             Assert.IsNotNull(result);
@@ -57,10 +65,10 @@ namespace GymLog.BLL.UnitTests.Services
 
         [TestMethod]
         [ExpectedException(typeof(KeyNotFoundException), "Body part with id 3 not found.")]
-        public void GetBodyPartById_ShouldThrowExceptionForBodyPartNotFound()
+        public async Task GetBodyPartById_ShouldThrowExceptionForBodyPartNotFound()
         {
             // Act
-            var result = _service.GetBodyPartById(3);
+            var result = await _service.GetBodyPartByIdAsync(3);
         }
 
         [TestCleanup]

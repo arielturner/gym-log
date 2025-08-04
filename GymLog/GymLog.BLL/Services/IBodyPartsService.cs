@@ -10,35 +10,35 @@ namespace GymLog.BLL.Services;
 public interface IBodyPartsService
 {
     /// <summary>
-    /// Get all body parts
+    /// Get all body parts asynchronously
     /// </summary>
     /// <returns>List of body parts</returns>
-    IEnumerable<BodyPartDto> GetAllBodyParts();
-    
+    Task<IEnumerable<BodyPartDto>> GetAllBodyPartsAsync();
+
     /// <summary>
-    /// Get a body part by id
+    /// Get a body part by id asynchronously
     /// </summary>
     /// <param name="id">Id of the body part</param>
     /// <returns>Body part</returns>
-    BodyPartDto GetBodyPartById(int id);
-    
+    Task<BodyPartDto?> GetBodyPartByIdAsync(int id);
+
     /// <summary>
-    /// Create a new body part
+    /// Create a new body part asynchronously
     /// </summary>
     /// <param name="bodyPart">Body part to create</param>
     /// <returns>Created body part</returns>
-    BodyPartDto CreateBodyPart(BodyPartDto bodyPart);
-    
+    Task<BodyPartDto> CreateBodyPartAsync(BodyPartDto bodyPart);
+
     /// <summary>
-    /// Update a body part
+    /// Update a body part asynchronously
     /// </summary>
     /// <param name="bodyPart">Body part to update</param>
     /// <returns>Updated body part</returns>
-    BodyPartDto UpdateBodyPart(BodyPartDto bodyPart);
-    
+    Task<BodyPartDto> UpdateBodyPartAsync(BodyPartDto bodyPart);
+
     /// <summary>
-    /// Delete a body part
+    /// Delete a body part asynchronously
     /// </summary>
     /// <param name="id">Id of the body part to delete</param>
-    void DeleteBodyPart(int id);
+    Task DeleteBodyPartAsync(int id);
 }
