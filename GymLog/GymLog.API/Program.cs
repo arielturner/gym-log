@@ -41,6 +41,7 @@ try
     builder.Services.AddScoped<IBodyPartsService, BodyPartsService>();
     builder.Services.AddScoped<IExercisesService, ExercisesService>();
     builder.Services.AddTransient<ICurrentUserService, CurrentUserService>();
+    builder.Services.AddSingleton<IOneRepMaxEstimator, OneRepMaxEstimator>();
 
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
